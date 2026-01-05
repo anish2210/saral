@@ -57,7 +57,6 @@ If a feature does not directly support this goal, it is **out of scope**.
 ### Enabled Auth Methods
 - Google OAuth
 - Email OTP
-- Phone OTP
 
 ### Clerk Responsibilities
 - Identity verification

@@ -11,9 +11,20 @@ Saral is a Tutor Fee Tracking Platform that enables local tuition tutors to trac
 - **Frontend**: React with Vite (in `/client`)
 - **Backend**: Node.js + Express (in `/server`)
 - **Database**: MongoDB Atlas
-- **Authentication**: Clerk (Google OAuth, Email OTP, Phone OTP)
+- **Authentication**: Clerk (Google OAuth, Email OTP)
 
 ## Commands
+
+### Client
+```bash
+cd client
+npm install          # Install dependencies
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+```
+
+Client runs on `http://localhost:5173` by default.
 
 ### Server
 ```bash
@@ -26,7 +37,12 @@ npm start            # Start production server
 Server runs on `http://localhost:3000` by default.
 
 ### Environment Setup
-Copy `server/.env.example` to `server/.env` and fill in:
+
+**Client** (`client/.env`):
+- `VITE_CLERK_PUBLISHABLE_KEY` - From Clerk dashboard
+- `VITE_API_URL` - Backend API URL (default: `http://localhost:3000/api`)
+
+**Server** (`server/.env`):
 - `MONGODB_URI` - MongoDB Atlas connection string
 - `CLERK_SECRET_KEY` - From Clerk dashboard
 - `CLERK_PUBLISHABLE_KEY` - From Clerk dashboard

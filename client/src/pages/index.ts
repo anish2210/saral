@@ -1,0 +1,10 @@
+export { default as SignInPage } from './SignInPage';
+export { default as SignUpPage } from './SignUpPage';
+export { default as OnboardingPage } from './OnboardingPage';
+export { default as DashboardPage } from './DashboardPage';
+export { default as StudentsPage } from './StudentsPage';
+export { default as StudentDetailPage } from './StudentDetailPage';
+export { default as StudentFormPage } from './StudentFormPage';
+export { default as PaymentsPage } from './PaymentsPage';
+export { default as ProfilePage } from './ProfilePage';
+export { default as PublicPaymentPage } from './PublicPaymentPage';
