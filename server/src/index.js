@@ -17,18 +17,22 @@ connectDB();
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(clerkMiddleware());
 
-// Health check
+// Health check (public)
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Routes
+// Public routes (no auth required) - must be before clerkMiddleware
+app.use('/api/public', publicRoutes);
+
+// Clerk middleware for authenticated routes
+app.use(clerkMiddleware());
+
+// Protected routes
 app.use('/api', onboardingRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api', paymentRoutes);
-app.use('/api/public', publicRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
