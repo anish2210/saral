@@ -71,6 +71,45 @@ export function getMonthsFromStart(startDate: string | undefined): string[] {
   return months.reverse();
 }
 
+// Get fee for a specific month based on fee history
+export function getFeeForMonth(
+  month: string,
+  feeHistory: { amount: number; effectiveFrom: string }[] | undefined,
+  defaultFee: number
+): number {
+  if (!feeHistory || feeHistory.length === 0) {
+    return defaultFee;
+  }
+
+  // Sort by effectiveFrom in ascending order
+  const sorted = [...feeHistory].sort((a, b) =>
+    a.effectiveFrom.localeCompare(b.effectiveFrom)
+  );
+
+  // Find the applicable fee for this month
+  // The fee that applies is the last one with effectiveFrom <= month
+  let applicableFee = sorted[0].amount;
+  for (const entry of sorted) {
+    if (entry.effectiveFrom <= month) {
+      applicableFee = entry.amount;
+    } else {
+      break;
+    }
+  }
+
+  return applicableFee;
+}
+
+// Format date for display
+export function formatDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-IN', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
 // Format phone number for display
 export function formatPhone(phone: string): string {
   if (!phone) return '';

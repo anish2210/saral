@@ -13,6 +13,12 @@ export interface Tutor {
   updatedAt: string;
 }
 
+// Fee history type
+export interface FeeHistoryEntry {
+  amount: number;
+  effectiveFrom: string; // YYYY-MM format
+}
+
 // Student types
 export interface Student {
   _id: string;
@@ -20,6 +26,7 @@ export interface Student {
   name: string;
   phone?: string;
   monthlyFee: number;
+  feeHistory?: FeeHistoryEntry[];
   startDate?: string;
   publicToken: string;
   createdAt: string;

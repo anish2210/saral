@@ -77,6 +77,13 @@ class ApiClient {
     });
   }
 
+  async updateStudentFee(id: string, data: { amount: number; effectiveFrom: string }) {
+    return this.request<{ student: import('../types').Student }>(`/students/${id}/fee`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
   // Payments
   async getStudentPayments(studentId: string) {
     return this.request<{ payments: import('../types').PaymentRecord[] }>(

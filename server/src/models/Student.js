@@ -22,6 +22,17 @@ const studentSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
+  feeHistory: [{
+    amount: {
+      type: Number,
+      required: true,
+      min: 0
+    },
+    effectiveFrom: {
+      type: String, // YYYY-MM format
+      required: true
+    }
+  }],
   startDate: {
     type: Date,
     default: null

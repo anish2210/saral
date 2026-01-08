@@ -35,11 +35,18 @@ router.post('/', requireActiveSubscription, checkStudentLimit, async (req, res) 
       return res.status(400).json({ error: 'Valid monthly fee is required' });
     }
 
+    // Determine effective month for initial fee
+    const now = new Date();
+    const effectiveMonth = startDate
+      ? startDate.substring(0, 7) // YYYY-MM from startDate
+      : `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+
     const student = new Student({
       tutorId: req.tutor._id,
       name: name.trim(),
       phone: phone?.trim() || '',
       monthlyFee,
+      feeHistory: [{ amount: monthlyFee, effectiveFrom: effectiveMonth }],
       startDate: startDate ? new Date(startDate) : null
     });
 
@@ -127,6 +134,56 @@ router.delete('/:id', requireActiveSubscription, async (req, res) => {
   } catch (error) {
     console.error('Error removing student:', error);
     res.status(500).json({ error: 'Failed to remove student' });
+  }
+});
+
+// POST /api/students/:id/fee - Update fee with effective month
+router.post('/:id/fee', requireActiveSubscription, async (req, res) => {
+  try {
+    const { amount, effectiveFrom } = req.body;
+
+    if (amount === undefined || amount < 0) {
+      return res.status(400).json({ error: 'Valid fee amount is required' });
+    }
+
+    if (!effectiveFrom || !/^\d{4}-\d{2}$/.test(effectiveFrom)) {
+      return res.status(400).json({ error: 'Valid effective month (YYYY-MM) is required' });
+    }
+
+    const student = await Student.findOne({
+      _id: req.params.id,
+      tutorId: req.tutor._id
+    });
+
+    if (!student) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    // Check if there's already a fee change for this month
+    const existingIndex = student.feeHistory.findIndex(f => f.effectiveFrom === effectiveFrom);
+    if (existingIndex >= 0) {
+      // Update existing entry
+      student.feeHistory[existingIndex].amount = amount;
+    } else {
+      // Add new fee history entry
+      student.feeHistory.push({ amount, effectiveFrom });
+      // Sort by effectiveFrom to keep chronological order
+      student.feeHistory.sort((a, b) => a.effectiveFrom.localeCompare(b.effectiveFrom));
+    }
+
+    // Update current monthlyFee to the latest fee
+    const latestFee = student.feeHistory[student.feeHistory.length - 1];
+    student.monthlyFee = latestFee.amount;
+
+    await student.save();
+
+    res.json({
+      message: 'Fee updated successfully',
+      student
+    });
+  } catch (error) {
+    console.error('Error updating fee:', error);
+    res.status(500).json({ error: 'Failed to update fee' });
   }
 });
 
