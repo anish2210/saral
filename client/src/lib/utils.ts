@@ -41,6 +41,36 @@ export function getLastNMonths(n: number): string[] {
   return months;
 }
 
+// Get array of months from start date to current month
+export function getMonthsFromStart(startDate: string | undefined): string[] {
+  const months: string[] = [];
+  const now = new Date();
+  const currentMonth = new Date(now.getFullYear(), now.getMonth());
+
+  // If no start date, return last 6 months as default
+  if (!startDate) {
+    return getLastNMonths(6);
+  }
+
+  const [year, month] = startDate.split('-').map(Number);
+  const start = new Date(year, month - 1);
+
+  // If start date is in the future, return empty array
+  if (start > currentMonth) {
+    return [];
+  }
+
+  // Generate all months from start to current
+  const current = new Date(start);
+  while (current <= currentMonth) {
+    months.push(`${current.getFullYear()}-${String(current.getMonth() + 1).padStart(2, '0')}`);
+    current.setMonth(current.getMonth() + 1);
+  }
+
+  // Return in reverse order (most recent first)
+  return months.reverse();
+}
+
 // Format phone number for display
 export function formatPhone(phone: string): string {
   if (!phone) return '';

@@ -20,6 +20,7 @@ export interface Student {
   name: string;
   phone?: string;
   monthlyFee: number;
+  startDate?: string;
   publicToken: string;
   createdAt: string;
   updatedAt: string;
@@ -59,6 +60,7 @@ export interface StudentFormData {
   name: string;
   phone?: string;
   monthlyFee: number;
+  startDate?: string;
 }
 
 export interface PaymentFormData {

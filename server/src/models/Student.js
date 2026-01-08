@@ -22,6 +22,10 @@ const studentSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
+  startDate: {
+    type: Date,
+    default: null
+  },
   publicToken: {
     type: String,
     unique: true,

@@ -17,6 +17,7 @@ function StudentFormPage() {
     name: '',
     phone: '',
     monthlyFee: 0,
+    startDate: '',
   });
 
   useEffect(() => {
@@ -30,6 +31,7 @@ function StudentFormPage() {
           name: student.name,
           phone: student.phone || '',
           monthlyFee: student.monthlyFee,
+          startDate: student.startDate ? student.startDate.substring(0, 7) : '',
         });
       } catch (err) {
         setError('Failed to load student');
@@ -129,6 +131,14 @@ function StudentFormPage() {
                 setFormData({ ...formData, monthlyFee: parseInt(e.target.value) || 0 })
               }
               required
+            />
+
+            <Input
+              label="Start Month"
+              type="month"
+              value={formData.startDate || ''}
+              onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+              hint="Payment tracking will start from this month"
             />
 
             {error && <p className="text-sm text-red-500">{error}</p>}

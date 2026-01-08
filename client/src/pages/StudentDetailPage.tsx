@@ -7,7 +7,7 @@ import { api } from '../lib/api';
 import {
   formatCurrency,
   formatMonth,
-  getLastNMonths,
+  getMonthsFromStart,
   getPublicPaymentLink,
   copyToClipboard,
 } from '../lib/utils';
@@ -136,7 +136,7 @@ function StudentDetailPage() {
     );
   }
 
-  const months = getLastNMonths(6);
+  const months = getMonthsFromStart(student.startDate);
   const paymentsByMonth = new Map(payments.map((p) => [p.month, p]));
 
   return (

@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 // POST /api/students - Add new student
 router.post('/', requireActiveSubscription, checkStudentLimit, async (req, res) => {
   try {
-    const { name, phone, monthlyFee } = req.body;
+    const { name, phone, monthlyFee, startDate } = req.body;
 
     if (!name || !name.trim()) {
       return res.status(400).json({ error: 'Student name is required' });
@@ -39,7 +39,8 @@ router.post('/', requireActiveSubscription, checkStudentLimit, async (req, res) 
       tutorId: req.tutor._id,
       name: name.trim(),
       phone: phone?.trim() || '',
-      monthlyFee
+      monthlyFee,
+      startDate: startDate ? new Date(startDate) : null
     });
 
     await student.save();
@@ -76,7 +77,7 @@ router.get('/:id', async (req, res) => {
 // PUT /api/students/:id - Update student
 router.put('/:id', requireActiveSubscription, async (req, res) => {
   try {
-    const { name, phone, monthlyFee } = req.body;
+    const { name, phone, monthlyFee, startDate } = req.body;
 
     const student = await Student.findOne({
       _id: req.params.id,
@@ -90,6 +91,7 @@ router.put('/:id', requireActiveSubscription, async (req, res) => {
     if (name) student.name = name.trim();
     if (phone !== undefined) student.phone = phone.trim();
     if (monthlyFee !== undefined && monthlyFee >= 0) student.monthlyFee = monthlyFee;
+    if (startDate !== undefined) student.startDate = startDate ? new Date(startDate) : null;
 
     await student.save();
 
