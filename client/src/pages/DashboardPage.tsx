@@ -37,7 +37,7 @@ function DashboardPage() {
         );
         const paymentResults = await Promise.all(paymentPromises);
 
-        studentsRes.students.forEach((student, index) => {
+        studentsRes.students.forEach((_student, index) => {
           const payments = paymentResults[index].payments;
           const currentPayment = payments.find(
             (p: PaymentRecord) => p.month === currentMonth

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useClerk, useUser } from '@clerk/clerk-react';
-import { LogOut, CreditCard, Users, Phone, Mail, Calendar } from 'lucide-react';
+import { LogOut, CreditCard, Users, Phone, Mail } from 'lucide-react';
 import { Layout } from '../components/layout';
 import { Card, Button, Badge, Spinner } from '../components/ui';
 import { api } from '../lib/api';

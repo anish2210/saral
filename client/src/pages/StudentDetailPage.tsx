@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Edit, Share2, Copy, Check, IndianRupee, Plus, X, Calendar, TrendingUp } from 'lucide-react';
 import { Layout } from '../components/layout';
-import { Card, Button, Badge, Spinner, Select, Input } from '../components/ui';
+import { Card, Button, Spinner, Select, Input } from '../components/ui';
 import { api } from '../lib/api';
 import {
   formatCurrency,

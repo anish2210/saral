@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '../components/layout';
 import { Card, Button, Input, Spinner } from '../components/ui';
 import { api } from '../lib/api';
-import type { StudentFormData, Student } from '../types';
+import type { StudentFormData } from '../types';
 
 function StudentFormPage() {
   const navigate = useNavigate();

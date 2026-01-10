@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Users } from 'lucide-react';
 import { Layout, FloatingActionButton } from '../components/layout';
-import { Card, Input, Spinner, EmptyState } from '../components/ui';
+import { Card, Spinner, EmptyState } from '../components/ui';
 import { api } from '../lib/api';
 import { formatCurrency } from '../lib/utils';
 import type { Student } from '../types';

@@ -30,7 +30,7 @@ function OnboardingPage() {
         const response = await api.getMe();
         console.log('[OnboardingPage] getMe response:', response);
 
-        if (response.needsOnboarding) {
+        if ('needsOnboarding' in response && response.needsOnboarding) {
           // User not onboarded yet, show form
           console.log('[OnboardingPage] User needs onboarding, showing form');
           setIsLoading(false);
