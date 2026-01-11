@@ -19,10 +19,10 @@ function SignInPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
-      <div className="mb-8 text-center">
+      {/* <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-primary-600">Saral</h1>
         <p className="mt-2 text-text-secondary">Simple fee tracking for tutors</p>
-      </div>
+      </div> */}
       <SignIn
         appearance={{
           elements: {
