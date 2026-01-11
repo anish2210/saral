@@ -1,21 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import { UserButton, useUser } from '@clerk/clerk-react';
-import { Menu, Bell } from 'lucide-react';
+import { Bell } from 'lucide-react';
 
 interface HeaderProps {
   title?: string;
   showBack?: boolean;
-  showMenu?: boolean;
 }
 
-function Header({ title = 'Saral', showBack = false, showMenu = false }: HeaderProps) {
+function Header({ title = 'Saral', showBack = false }: HeaderProps) {
   const navigate = useNavigate();
   const { user } = useUser();
 
   return (
     <header className="sticky top-0 z-10 flex h-14 items-center justify-between bg-surface px-4 shadow-sm">
       <div className="flex items-center gap-3">
-        {showBack ? (
+        {showBack && (
           <button
             onClick={() => navigate(-1)}
             className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100"
@@ -35,14 +34,7 @@ function Header({ title = 'Saral', showBack = false, showMenu = false }: HeaderP
               <path d="m15 18-6-6 6-6" />
             </svg>
           </button>
-        ) : showMenu ? (
-          <button
-            className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100"
-            aria-label="Menu"
-          >
-            <Menu className="h-6 w-6 text-text-primary" />
-          </button>
-        ) : null}
+        )}
         <h1 className="text-lg font-semibold text-text-primary">{title}</h1>
       </div>
 

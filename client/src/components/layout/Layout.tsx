@@ -19,7 +19,7 @@ function Layout({
 }: LayoutProps) {
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      {showHeader && <Header title={title} showBack={showBack} showMenu={!showBack} />}
+      {showHeader && <Header title={title} showBack={showBack} />}
       <main className={cn('flex-1', showNav && 'pb-20')}>
         {children}
       </main>

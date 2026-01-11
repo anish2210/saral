@@ -24,8 +24,8 @@ function OnboardingPage() {
       setFormData((prev) => ({ ...prev, name: user.fullName || '' }));
     }
 
-    // Check if user already completed onboarding
-    const checkOnboarding = async () => {
+    // Check if user already completed onboarding with retry logic
+    const checkOnboarding = async (retryCount = 0): Promise<void> => {
       try {
         const response = await api.getMe();
         console.log('[OnboardingPage] getMe response:', response);
@@ -41,8 +41,15 @@ function OnboardingPage() {
         }
       } catch (err) {
         console.error('[OnboardingPage] Error checking onboarding:', err);
-        // On error, show form anyway
-        setIsLoading(false);
+        // Retry up to 2 times with a small delay (handles token not ready race condition)
+        if (retryCount < 2) {
+          console.log(`[OnboardingPage] Retrying check (attempt ${retryCount + 2})...`);
+          setTimeout(() => checkOnboarding(retryCount + 1), 500);
+        } else {
+          // After retries, show form anyway
+          console.log('[OnboardingPage] All retries failed, showing form');
+          setIsLoading(false);
+        }
       }
     };
 
@@ -69,7 +76,14 @@ function OnboardingPage() {
       await api.completeOnboarding(formData);
       navigate('/', { replace: true });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to complete onboarding');
+      const errorMessage = err instanceof Error ? err.message : 'Failed to complete onboarding';
+      // If profile already exists, redirect to dashboard instead of showing error
+      if (errorMessage.toLowerCase().includes('profile already exists')) {
+        console.log('[OnboardingPage] Profile already exists, redirecting to dashboard');
+        navigate('/', { replace: true });
+        return;
+      }
+      setError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
