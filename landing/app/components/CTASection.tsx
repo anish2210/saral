@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Button from './Button';
+import { CheckIcon } from './Icons';
 
 export default function CTASection() {
   return (
@@ -63,15 +64,15 @@ export default function CTASection() {
             className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400"
           >
             <div className="flex items-center gap-2">
-              <span className="text-emerald-500">✓</span>
+              <CheckIcon className="text-emerald-500" size={18} />
               <span>14-day free trial</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-emerald-500">✓</span>
+              <CheckIcon className="text-emerald-500" size={18} />
               <span>No credit card required</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-emerald-500">✓</span>
+              <CheckIcon className="text-emerald-500" size={18} />
               <span>Setup in 2 minutes</span>
             </div>
           </motion.div>

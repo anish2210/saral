@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Button from './Button';
+import { CheckIcon } from './Icons';
 
 const plans = [
   {
@@ -109,7 +110,7 @@ export default function PricingSection() {
               <ul className="space-y-3 mb-8">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-primary-500 mt-1">✓</span>
+                    <CheckIcon className="text-primary-500 mt-0.5 flex-shrink-0" size={18} />
                     <span className="text-slate-300">{feature}</span>
                   </li>
                 ))}
@@ -134,7 +135,7 @@ export default function PricingSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center text-slate-500 mt-12"
         >
-          All plans include 14-day free trial • No credit card required
+          All plans include 14-day free trial - No credit card required
         </motion.p>
       </div>
     </section>

@@ -1,43 +1,44 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { BoltIcon, SmartphoneIcon, ShieldIcon, LinkIcon, ChartIcon, ClockIcon } from './Icons';
 
 const features = [
   {
-    icon: '⚡',
+    icon: BoltIcon,
     title: 'Lightning Fast Tracking',
     description: 'Mark payments as paid or pending with a single tap. No typing, no hassle.',
-    color: 'primary',
+    color: 'text-primary-500',
   },
   {
-    icon: '📱',
+    icon: SmartphoneIcon,
     title: 'Mobile-First Design',
     description: 'Built for your phone. Update student records anywhere, anytime.',
-    color: 'blue',
+    color: 'text-blue-500',
   },
   {
-    icon: '🔐',
+    icon: ShieldIcon,
     title: 'Secure & Private',
     description: 'Your student data stays yours. Bank-level encryption keeps everything safe.',
-    color: 'emerald',
+    color: 'text-emerald-500',
   },
   {
-    icon: '🔗',
+    icon: LinkIcon,
     title: 'Share Payment Links',
     description: 'Send unique links to students so they can check their payment status.',
-    color: 'violet',
+    color: 'text-violet-500',
   },
   {
-    icon: '📊',
+    icon: ChartIcon,
     title: 'Clear Overview',
     description: 'See who paid and who is pending at a glance. No more guesswork.',
-    color: 'orange',
+    color: 'text-orange-500',
   },
   {
-    icon: '⏱️',
+    icon: ClockIcon,
     title: 'Monthly Reminders',
     description: 'Automated tracking helps you remember fee collection dates effortlessly.',
-    color: 'pink',
+    color: 'text-pink-500',
   },
 ];
 
@@ -67,21 +68,26 @@ export default function SolutionSection() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 rounded-2xl p-6 hover:border-primary-500/30 transition-all duration-300 backdrop-blur-sm"
-            >
-              <div className="text-5xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{feature.description}</p>
-            </motion.div>
-          ))}
+          {features.map((feature, index) => {
+            const IconComponent = feature.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 rounded-2xl p-6 hover:border-primary-500/30 transition-all duration-300 backdrop-blur-sm"
+              >
+                <div className={`mb-4 ${feature.color}`}>
+                  <IconComponent size={48} />
+                </div>
+                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                <p className="text-slate-400 leading-relaxed">{feature.description}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

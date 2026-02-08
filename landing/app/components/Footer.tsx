@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { HeartIcon, TwitterIcon, LinkedInIcon, InstagramIcon } from './Icons';
 
 const footerLinks = {
   Product: [
@@ -54,24 +55,24 @@ export default function Footer() {
               <div className="flex gap-4">
                 <a
                   href="#twitter"
-                  className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-colors"
+                  className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-colors text-slate-300 hover:text-white"
                   aria-label="Twitter"
                 >
-                  <span className="text-xl">𝕏</span>
+                  <TwitterIcon size={18} />
                 </a>
                 <a
                   href="#linkedin"
-                  className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-colors"
+                  className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-colors text-slate-300 hover:text-white"
                   aria-label="LinkedIn"
                 >
-                  <span className="text-xl">in</span>
+                  <LinkedInIcon size={18} />
                 </a>
                 <a
                   href="#instagram"
-                  className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-colors"
+                  className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-colors text-slate-300 hover:text-white"
                   aria-label="Instagram"
                 >
-                  <span className="text-xl">📷</span>
+                  <InstagramIcon size={18} />
                 </a>
               </div>
             </motion.div>
@@ -112,10 +113,10 @@ export default function Footer() {
           className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4"
         >
           <p className="text-slate-500 text-sm text-center sm:text-left">
-            © {new Date().getFullYear()} Saral. All rights reserved.
+            © 2025 Saral. All rights reserved.
           </p>
-          <p className="text-slate-500 text-sm">
-            Made with ❤️ for Indian Tutors
+          <p className="text-slate-500 text-sm flex items-center gap-1">
+            Made with <HeartIcon className="text-red-500" size={16} /> for Indian Tutors
           </p>
         </motion.div>
       </div>

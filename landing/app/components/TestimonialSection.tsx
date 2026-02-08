@@ -1,26 +1,27 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { StarIcon, UserIcon } from './Icons';
 
 const testimonials = [
   {
     name: 'Rajesh Verma',
     role: 'Math Tutor, Delhi',
-    avatar: '👨‍🏫',
+    initials: 'RV',
     quote: 'I used to spend 30 minutes every week tracking fees in my notebook. Now it takes me 2 minutes on my phone. Saral is a lifesaver!',
     rating: 5,
   },
   {
     name: 'Priya Deshmukh',
     role: 'Science Tutor, Mumbai',
-    avatar: '👩‍🏫',
+    initials: 'PD',
     quote: 'The shared payment links are genius. Parents can check their child\'s status anytime, so no more awkward phone calls.',
     rating: 5,
   },
   {
     name: 'Amit Kulkarni',
     role: 'English Tutor, Pune',
-    avatar: '🧑‍🏫',
+    initials: 'AK',
     quote: 'Simple, fast, and exactly what I needed. No complicated features I will never use. Just pure tracking magic.',
     rating: 5,
   },
@@ -65,7 +66,7 @@ export default function TestimonialSection() {
               {/* Rating Stars */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <span key={i} className="text-primary-500 text-xl">★</span>
+                  <StarIcon key={i} className="text-primary-500" size={20} />
                 ))}
               </div>
 
@@ -76,8 +77,8 @@ export default function TestimonialSection() {
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500/20 to-violet-500/20 flex items-center justify-center text-2xl">
-                  {testimonial.avatar}
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500/20 to-violet-500/20 flex items-center justify-center text-sm font-bold text-primary-400">
+                  {testimonial.initials}
                 </div>
                 <div>
                   <p className="font-semibold text-white">{testimonial.name}</p>

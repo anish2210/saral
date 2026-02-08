@@ -69,8 +69,9 @@ export default function PaymentCard({ studentName, amount, status, delay = 0 }: 
               <p className="text-2xl font-bold text-white mt-1">{amount}</p>
             </div>
             <div className="flex items-center justify-between">
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                Paid ✓
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                Paid
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
               </span>
               <span className="text-xs text-slate-500">Tap again</span>
             </div>
