@@ -150,7 +150,7 @@ function PublicPaymentPage() {
 
         {/* Branding */}
         <p className="text-center text-xs text-text-muted">
-          Powered by <span className="font-semibold text-primary-600">Saral</span>
+          Powered by <a href={import.meta.env.VITE_LANDING_URL || 'https://saral.space'} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary-600 hover:underline">Saral</a>
         </p>
       </div>
     </div>

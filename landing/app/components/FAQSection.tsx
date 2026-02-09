@@ -120,7 +120,7 @@ export default function FAQSection() {
             We are here to help! Reach out to our support team anytime.
           </p>
           <a
-            href="mailto:support@saral.app"
+            href="mailto:support@saral.space"
             className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-xl bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 hover:border-slate-600 transition-all duration-200 min-h-[48px]"
           >
             Contact Support

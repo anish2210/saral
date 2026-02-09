@@ -26,7 +26,7 @@ const footerLinks = {
     { name: 'Help Center', href: '#help' },
     { name: 'Documentation', href: '#docs' },
     { name: 'System Status', href: '#status' },
-    { name: 'Contact Support', href: 'mailto:support@saral.app' },
+    { name: 'Contact Support', href: 'mailto:support@saral.space' },
   ],
 };
 

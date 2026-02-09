@@ -38,9 +38,13 @@ Server runs on `http://localhost:3000` by default.
 
 ### Environment Setup
 
+**Landing** (`landing/.env`):
+- `NEXT_PUBLIC_APP_URL` - Client app URL (default: `http://localhost:5173`, prod: `https://app.saral.space`)
+
 **Client** (`client/.env`):
 - `VITE_CLERK_PUBLISHABLE_KEY` - From Clerk dashboard
 - `VITE_API_URL` - Backend API URL (default: `http://localhost:3000/api`)
+- `VITE_LANDING_URL` - Landing page URL (default: `https://saral.space`)
 
 **Server** (`server/.env`):
 - `MONGODB_URI` - MongoDB Atlas connection string

@@ -23,6 +23,8 @@ const steps = [
   },
 ];
 
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5173';
+
 export default function HowItWorksSection() {
   return (
     <section id="how-it-works" className="py-20 px-4 bg-slate-900/50 relative overflow-hidden">
@@ -90,7 +92,7 @@ export default function HowItWorksSection() {
         >
           <p className="text-xl text-slate-300 mb-6">Ready to simplify your fee tracking?</p>
           <motion.a
-            href="#get-started"
+            href={`${appUrl}/sign-up`}
             className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-slate-950 shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/40 transition-all duration-200 min-h-[56px]"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

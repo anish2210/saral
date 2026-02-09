@@ -53,6 +53,8 @@ const plans = [
   },
 ];
 
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5173';
+
 export default function PricingSection() {
   return (
     <section id="pricing" className="py-20 px-4 bg-slate-900/50 relative overflow-hidden">
@@ -119,7 +121,7 @@ export default function PricingSection() {
               <Button
                 variant={plan.popular ? 'primary' : 'outline'}
                 size="lg"
-                href="#get-started"
+                href={`${appUrl}/sign-up`}
                 className="w-full"
               >
                 {plan.cta}
