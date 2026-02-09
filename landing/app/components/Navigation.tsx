@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Button from './Button';
+import { trackCTAClick } from '../lib/gtm';
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5173';
 
@@ -64,10 +65,10 @@ export default function Navigation() {
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" href={`${appUrl}/sign-in`} className="hidden sm:inline-flex">
+            <Button variant="outline" size="sm" href={`${appUrl}/sign-in`} className="hidden sm:inline-flex" onClick={() => trackCTAClick('nav_login')}>
               Login
             </Button>
-            <Button variant="primary" size="sm" href={`${appUrl}/sign-up`}>
+            <Button variant="primary" size="sm" href={`${appUrl}/sign-up`} onClick={() => trackCTAClick('nav_get_started')}>
               Get Started
             </Button>
           </div>

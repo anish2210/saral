@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+import CookieConsent from "./components/CookieConsent";
+
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,13 +47,54 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {GSC_VERIFICATION && (
+          <meta name="google-site-verification" content={GSC_VERIFICATION} />
+        )}
         <link
           href="https://api.fontshare.com/v2/css?f[]=clash-display@400,600,700&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className={`${inter.variable} antialiased`}>
+        {/* Consent Mode defaults — must fire before GTM */}
+        <Script id="consent-defaults" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+            });
+          `}
+        </Script>
+
+        {/* Google Tag Manager */}
+        {GTM_ID && (
+          <>
+            <Script id="gtm" strategy="afterInteractive">
+              {`
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${GTM_ID}');
+              `}
+            </Script>
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                height="0"
+                width="0"
+                style={{ display: 'none', visibility: 'hidden' }}
+              />
+            </noscript>
+          </>
+        )}
+
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

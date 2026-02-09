@@ -5,6 +5,7 @@ import { Layout, FloatingActionButton } from '../components/layout';
 import { Card, Spinner, Badge } from '../components/ui';
 import { api } from '../lib/api';
 import { formatCurrency, getCurrentMonth, formatMonth } from '../lib/utils';
+import { trackDashboardView } from '../lib/gtm';
 import type { Tutor, Student, PaymentRecord } from '../types';
 
 function DashboardPage() {
@@ -14,6 +15,8 @@ function DashboardPage() {
   const [students, setStudents] = useState<Student[]>([]);
   const [pendingCount, setPendingCount] = useState(0);
   const [collectedAmount, setCollectedAmount] = useState(0);
+
+  useEffect(() => { trackDashboardView(); }, []);
 
   useEffect(() => {
     const fetchData = async () => {

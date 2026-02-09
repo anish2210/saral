@@ -1,11 +1,16 @@
 import { SignUp, useAuth } from '@clerk/clerk-react';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { trackSignupStarted, trackSignupCompleted } from '../lib/gtm';
 
 function SignUpPage() {
   const { isSignedIn, isLoaded } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    trackSignupStarted('page_view');
+  }, []);
 
   useEffect(() => {
     // Only redirect if fully loaded, signed in, and NOT on a callback route
@@ -14,6 +19,7 @@ function SignUpPage() {
                            location.pathname.includes('/verify');
 
     if (isLoaded && isSignedIn && !isCallbackRoute) {
+      trackSignupCompleted(isCallbackRoute ? 'google' : 'email');
       navigate('/onboarding', { replace: true });
     }
   }, [isLoaded, isSignedIn, navigate, location.pathname]);

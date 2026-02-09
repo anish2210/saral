@@ -1,5 +1,6 @@
 import Navigation from './components/Navigation';
 import SmoothScroll from './components/SmoothScroll';
+import ScrollTracker from './components/ScrollTracker';
 import HeroSection from './components/HeroSection';
 import ProblemSection from './components/ProblemSection';
 import SolutionSection from './components/SolutionSection';
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
       <SmoothScroll />
+      <ScrollTracker />
       <Navigation />
       <HeroSection />
       <ProblemSection />

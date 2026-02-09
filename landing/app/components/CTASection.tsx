@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Button from './Button';
 import { CheckIcon } from './Icons';
+import { trackCTAClick } from '../lib/gtm';
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5173';
 
@@ -50,7 +51,7 @@ export default function CTASection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-6"
           >
-            <Button variant="primary" size="lg" href={`${appUrl}/sign-up`}>
+            <Button variant="primary" size="lg" href={`${appUrl}/sign-up`} onClick={() => trackCTAClick('cta_start_free_trial')}>
               Start Free Trial
             </Button>
             <Button variant="secondary" size="lg" href="#pricing">

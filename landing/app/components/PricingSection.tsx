@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Button from './Button';
 import { CheckIcon } from './Icons';
+import { trackCTAClick } from '../lib/gtm';
 
 const plans = [
   {
@@ -123,6 +124,7 @@ export default function PricingSection() {
                 size="lg"
                 href={`${appUrl}/sign-up`}
                 className="w-full"
+                onClick={() => trackCTAClick(`pricing_${plan.name.toLowerCase()}`)}
               >
                 {plan.cta}
               </Button>

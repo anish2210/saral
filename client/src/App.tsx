@@ -14,6 +14,7 @@ import {
   PublicPaymentPage,
 } from './pages';
 import { Spinner } from './components/ui';
+import CookieConsent from './components/CookieConsent';
 
 const CLERK_PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -75,6 +76,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      <CookieConsent />
     </ClerkProvider>
   );
 }

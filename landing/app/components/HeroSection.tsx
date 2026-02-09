@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Button from './Button';
 import PaymentCard from './PaymentCard';
+import { trackCTAClick } from '../lib/gtm';
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5173';
 
@@ -57,7 +58,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
-            <Button variant="primary" size="lg" href={`${appUrl}/sign-up`}>
+            <Button variant="primary" size="lg" href={`${appUrl}/sign-up`} onClick={() => trackCTAClick('hero_start_free_trial')}>
               Start Free Trial
             </Button>
             <Button variant="outline" size="lg" href="#how-it-works">

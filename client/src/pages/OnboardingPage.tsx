@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { Button, Input, Card, Spinner } from '../components/ui';
 import { api } from '../lib/api';
+import { trackActivationComplete } from '../lib/gtm';
 import type { OnboardingFormData } from '../types';
 
 function OnboardingPage() {
@@ -74,6 +75,7 @@ function OnboardingPage() {
 
     try {
       await api.completeOnboarding(formData);
+      trackActivationComplete();
       navigate('/', { replace: true });
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to complete onboarding';

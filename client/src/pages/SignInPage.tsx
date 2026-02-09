@@ -1,6 +1,7 @@
 import { SignIn, useAuth } from '@clerk/clerk-react';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { trackLoginSuccess } from '../lib/gtm';
 
 function SignInPage() {
   const { isSignedIn, isLoaded } = useAuth();
@@ -13,6 +14,7 @@ function SignInPage() {
                            location.pathname.includes('/factor');
 
     if (isLoaded && isSignedIn && !isCallbackRoute) {
+      trackLoginSuccess(isCallbackRoute ? 'google' : 'email');
       navigate('/onboarding', { replace: true });
     }
   }, [isLoaded, isSignedIn, navigate, location.pathname]);
